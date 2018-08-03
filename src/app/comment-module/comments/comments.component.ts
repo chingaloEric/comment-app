@@ -6,7 +6,7 @@ import { Comment } from '../modules/comment.module';
 
 import { getComments } from '../../store/selectors/comments.selector';
 import { Appstate } from '../../store/reducers';
-import { EditComment, ToggleDropdown, ShowEditCommentForm, ShowDeleteConfirmationDialog } from '../../store/actions/comment.actions';
+import { ShowEditCommentForm, ShowDeleteConfirmationDialog } from '../../store/actions/comment.actions';
 
 
 @Component({
@@ -28,11 +28,7 @@ export class CommentsComponent implements OnInit {
     this.store.dispatch(new ShowEditCommentForm(comment));
   }
 
-  toggleCommentDropdown(comment: Comment) {
-    this.store.dispatch(new ToggleDropdown(comment));
-    console.log(comment);
-  }
-
+ 
   toggleDeleteConfirmationDialog(comment? : Comment) {
     this.store.dispatch(new ShowDeleteConfirmationDialog(comment));
   }

@@ -4,8 +4,6 @@ export interface Comment{
     commentId: string,
     showDate: boolean,
     //lastUpdate: Date,
-    showMoreButton: boolean,
-    showDropdownOption: boolean,
     showEditForm: boolean,
     showDeleteDialog : boolean   
 }
