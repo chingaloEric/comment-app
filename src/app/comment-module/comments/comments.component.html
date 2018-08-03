@@ -1,0 +1,49 @@
+<div class="comment-box" *ngFor="let comment of comments$|async">
+    <div class="interpretation-comment-body">
+        <div class="row">
+            <div class="comment-user">
+                {{ comment?.user }}
+                <!--<b>{{ comment?.user.displayName }}</b>-->
+            </div>
+
+            <div class="interpretation-comment-text" *ngIf="!comment?.showEditForm && !comment?.showDeleteDialog">
+                {{ comment?.commentText}}
+                <br>
+                <a style="cursor: pointer" (click)="toggleDeleteConfirmationDialog(comment)">
+                    <i class="fa fa-trash" size="10px" style="color: blue" title="add comment"></i>
+                </a> &nbsp;
+                <a style="cursor: pointer" (click)="toggleCommentEditForm(comment)"><i class="fa fa-edit"size="10px" style="color: blue" title="edit" ></i></a>
+            </div>
+
+        </div>
+
+        <div *ngIf="comment?.showDeleteDialog">
+            <app-delete-comment [comment]="comment" (onCommentDeleteCancel)="toggleDeleteConfirmationDialog()" (onCommentDeleteFail)="toggleDeleteConfirmationDialog()"></app-delete-comment>
+        </div>
+
+        <div *ngIf="comment?.showEditForm">
+            <app-edit-comment [comment]="comment" (onCommentEditCancel)="toggleCommentEditForm()" (onCommentEditFail)="toggleCommentEditForm()" #commentInput></app-edit-comment>
+        </div>
+    </div>
+    <div class="interpretation-more-comment-options" *ngIf="!comment?.showDeleteDialog">
+        <!--  <div class="interpretation-last-updated" *ngIf="comment?.showDate">
+           {{ comment?.lastUpdated }}
+        </div>
+        -->
+    </div>
+</div>
+
+
+<!--The comment compose part-->
+<div class="interpretation-comment interpretation-comment-input-container" *ngIf="!showCommentInput">
+    <div class="interpretation-user-block">
+        <div class="interpretation-user">
+            Eric
+            <!--******assumption that there is only one user
+            {{ currentUser.displayName | abbreviate }} -->
+        </div>
+    </div>
+    <div>
+        <app-comment-add></app-comment-add>
+    </div>
+</div>

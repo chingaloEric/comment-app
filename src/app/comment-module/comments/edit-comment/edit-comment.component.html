@@ -1,0 +1,15 @@
+<div class="interpretation-edit-input-form form-group">
+    <textarea cols="100" rows="1" A utosize autofocus required minlength="10" placeholder="Write your comment" [(ngModel)]="commentBox" name="text" class="interpretation-edit-input"></textarea>
+    <div [hidden]="comment.commentText == ''">
+        <button class="btn btn-default edit-interpretation-btn" (click)="cancel($event)">CANCEL</button>
+
+        <button [ngClass]="{
+      'btn': true,
+      'btn-default': true,
+      'edit-interpretation-btn': true,
+      'disabled': creating
+      }" (click)="editComment($event)">
+      {{creating ? 'POSTING' : 'POST'}}
+    </button>
+    </div>
+</div>
